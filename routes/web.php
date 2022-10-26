@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\SendTestMailJob;
 use App\Mail\OrderShipped;
 use App\Mail\SendMarkdawn;
 use App\Models\User;
@@ -41,6 +42,12 @@ Route::get('/', function () {
   //     ->subject("hellow")
   //     ->text("This is Content");
   //       });
-  Mail::to('test@test.com')->send(new SendMarkdawn());
+  // Mail::to('test@test.com')->send(new SendMarkdawn());
+  // dispatch(function(){                      //closer method
+  // Mail::to('test@test.com')->send(new SendMarkdawn());
+  // })->delay(now()->addSeconds(5));
+  // dispatch(new SendTestMailJob())->delay(now()->addSeconds(5)); // another method
+  $user=User::findorfail(2);
+SendTestMailJob::dispatch($user)->delay(now()->addSeconds(5)); //this is another methods
     echo "mail sent";
 });
