@@ -1,5 +1,5 @@
 <x-mail::message>
-# {{ $data }}
+# {{ $user->name }}
 
 This is test messege
 

@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -15,16 +16,16 @@ class SendMarkdawn extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $data='i am a backend developer';
+    public User $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->user=$user;
     }
 
     /**
